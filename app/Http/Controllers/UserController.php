@@ -34,6 +34,10 @@ class UserController extends Controller
      */
     public function create(Request $request, $name)
     {
+        // here we are intentionally using the database factory
+        // with the method "make", this happened to facilitate
+        // the construction of this example, that was actually
+        // persisting in the database only in the Application 2.
         $userSample = factory(User::class)->make([
             'name' => $name,
         ]);
