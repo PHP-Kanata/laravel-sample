@@ -1,5 +1,7 @@
 # Real Time Facade Example
 
+(this feature is available since Laravel 5.5)
+
 I always wonder why difficult situations happens often with legacy code. but that might be something inherent for programming: the code is an expression of how the problem was, and how you saw the solution at a given time. If it happens for you to visualize differently something, you would have solved it in a different way.
 
 Trying to solve such problems, people create principles. Principles, originally, would be a set of rules to solve issues that you can't foresee. So you create these rules to avoid problems that you might have at some point. For sure we have problems that happens to be unsolvable for a given moment later in the project, but some rules blindly followed are simply a bigger problem.
