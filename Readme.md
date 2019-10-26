@@ -37,7 +37,7 @@ UserSyncService::shouldReceive('sync')->andReturn($user);
 ```
 
 This is proxying the call to the Mockery class. You can find more about Mockery library here: http://docs.mockery.io/en/latest/
-This library is useful when you need to replace specific functionalities of services, then you "mock" the actual instance, and control what specific method calls do.
+This library is useful when you need to replace specific functionalities of services, then you "mock" the actual instance, and control what specific method calls does.
 
 This is not finished yet, in order to make the Real Time Facade to work, we also need to add this to the controller, and this can be found here:
 
