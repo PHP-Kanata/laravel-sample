@@ -14,3 +14,29 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// ------------------------
+// Notes
+// ------------------------
+
+Route::get('/notes', 'NotesController@index')
+    ->name('notes-list')
+    ->middleware('client');
+Route::post('/notes', 'NotesController@store')
+     ->name('notes-create')
+     ->middleware('client');
+Route::put('/notes', 'NotesController@update')
+     ->name('notes-update')
+     ->middleware('client');
