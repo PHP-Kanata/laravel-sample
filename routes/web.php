@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')
+    ->name('home')
+    ->middleware('auth');
+
+// facebook-auth
+Route::get('oauth/service-two', 'ServiceTwoAuthController@redirectToProvider')->name('service-two-auth');
+Route::get('oauth/service-two/callback', 'ServiceTwoAuthController@handleProviderCallback');

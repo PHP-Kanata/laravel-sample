@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'passport' => [
+        'client_id' => env('SERVICE_TWO_CLIENT_ID'),
+        'client_secret' => env('SERVICE_TWO_CLIENT_SECRET'),
+        'url' => env('SERVICE_TWO_URL'),
+        'redirect' => env('SERVICE_TWO_CALLBACK_URL'),
+    ],
+
 ];
