@@ -11,13 +11,21 @@ use Illuminate\Http\Request;
 class NotesController extends Controller
 {
     /**
-     * @param GetNoteRequest  $request
+     * @param GetNoteRequest $request
      *
      * @return Note[]
      */
-    public function index(GetNoteRequest $request)
+    public function index( GetNoteRequest $request )
     {
-        return Note::where('user_id', $request->input('user_id'))->get();
+        $query = Note::query();
+
+        $query->where( 'user_id', $request->input( 'user_id' ) );
+
+        if ( $request->has( 'note_id' ) ) {
+            $query->where( 'id', $request->input( 'note_id' ) );
+        }
+
+        return $query->get();
     }
 
     /**
@@ -25,12 +33,12 @@ class NotesController extends Controller
      *
      * @return Note
      */
-    public function store(CreateNoteRequest $request)
+    public function store( CreateNoteRequest $request )
     {
-        $note = new Note;
-        $note->title = $request->input('title');
-        $note->content = $request->input('content');
-        $note->user_id = $request->input('user_id');
+        $note          = new Note;
+        $note->title   = $request->input( 'title' );
+        $note->content = $request->input( 'content' );
+        $note->user_id = $request->input( 'user_id' );
         $note->save();
 
         return $note;
@@ -41,15 +49,15 @@ class NotesController extends Controller
      *
      * @return Note
      */
-    public function update(UpdateNoteRequest $request)
+    public function update( UpdateNoteRequest $request )
     {
-        $note = Note::find($request->input('id'));
+        $note = Note::find( $request->input( 'id' ) );
 
-        if ($request->has('title')) {
+        if ( $request->has( 'title' ) ) {
             $note->title = $request->input( 'title' );
         }
 
-        if ($request->has('content')) {
+        if ( $request->has( 'content' ) ) {
             $note->content = $request->input( 'content' );
         }
 
