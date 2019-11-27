@@ -17,9 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// notes
+
 Route::get('/home', 'HomeController@index')
-    ->name('home')
+    ->name('notes-list')
     ->middleware('auth');
+
+Route::get('/home/{note_id}', 'HomeController@show')
+     ->name('notes-view')
+     ->middleware('auth');
 
 // facebook-auth
 Route::get('oauth/service-two', 'ServiceTwoAuthController@redirectToProvider')->name('service-two-auth');

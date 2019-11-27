@@ -62,4 +62,29 @@ class ServiceTwoService
 
         return collect( $notes );
     }
+
+    /**
+     * @param User $user
+     * @param int $note_id
+     *
+     * @return NoteItem
+     */
+    public function getUserNote(User $user, int $note_id)
+    {
+        $accessToken = $this->getAccessToken();
+
+        $userId = json_decode( $user->metas->filter( function ( $meta ) {
+            return $meta->name === ServiceTwoAuthController::SERVICE_TWO_META_KEY;
+        } )->first()->value )->id;
+
+        $response = $this->httpClient->get( $this->serviceUrl . '/notes?user_id=' . $userId . '&note_id=' . $note_id, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken,
+            ]
+        ] );
+
+        $note = current(json_decode( $response->getBody()->getContents(), true ));
+
+        return new NoteItem( $note );
+    }
 }

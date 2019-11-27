@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                @if (!isset($note) || $note === null)
+                    <div class="card-header">Notes</div>
+                @elseif ($note !== null)
+                    <div class="card-header"><a href="{{ route('notes-list') }}"><</a>&nbsp;&nbsp;Note</div>
+                @endif
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +18,11 @@
                         </div>
                     @endif
 
-                    @include('parts.notes-list')
+                    @if (!isset($note) || $note === null)
+                        @include('parts.notes-list')
+                    @elseif ($note !== null)
+                        @include('parts.note')
+                    @endif
 
                 </div>
             </div>
